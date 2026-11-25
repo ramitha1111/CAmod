@@ -26,11 +26,12 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '6.0.x'
+          cache: true
 
       - name: Prepare Environment
         run: |
           . mod.config;
-          awk '/\r$$/ { exit(1); }' mod.config || (printf "Invalid mod.config format. File must be saved using unix-style (LF, not CRLF or CR) line endings.\n"; exit 1);
+          awk '/\r$/ { exit(1); }' mod.config || (printf "Invalid mod.config format. File must be saved using unix-style (LF, not CRLF or CR) line endings.\n"; exit 1);
 
       - name: Check Code
         run: |
@@ -54,7 +55,7 @@ jobs:
       - name: Prepare Environment
         run: |
           . mod.config;
-          awk '/\r$$/ { exit(1); }' mod.config || (printf "Invalid mod.config format. File must be saved using unix-style (LF, not CRLF or CR) line endings.\n"; exit 1);
+          awk '/\r$/ { exit(1); }' mod.config || (printf "Invalid mod.config format. File must be saved using unix-style (LF, not CRLF or CR) line endings.\n"; exit 1);
 
       - name: Check Code
         run: |
@@ -79,6 +80,7 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '6.0.x'
+          cache: true
 
       - name: Check Code
         shell: powershell
