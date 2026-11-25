@@ -1,3 +1,8 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 1 optimization:
+# - [MEDIUM] Add concurrency group to "ci.yaml"
+# Estimated savings: ~2 min/run
+#
 name: Continuous Integration
 
 on:
@@ -7,6 +12,10 @@ on:
       - master
   pull_request:
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read  #  to fetch code (actions/checkout)
 
